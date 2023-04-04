@@ -8,7 +8,6 @@ data = json.loads(content)
 #print(f"il type(content) è: {type(content)}")
 #print(f"il type(data) è: {type(data)}")
 
-score = 0
 for domanda in data:
     print(domanda["contenuto_domanda"])
     for index,alternative in enumerate(domanda["possibili_risposte"]):
@@ -16,10 +15,9 @@ for domanda in data:
     scelta_utente = int(input("Inserisci la risposta:\t"))
     #inserisco la risposta data dall'utente come ulteriore dizionario
     domanda["scelta_utente"] = scelta_utente
-    if domanda["scelta_utente"] == domanda["risposta_corretta"]:
-        score += 1
 #printo le risposte date dall'utente
 
+score = 0
 for index,domanda in enumerate(data):
     if domanda["scelta_utente"] == domanda["risposta_corretta"]:
         score += 1
