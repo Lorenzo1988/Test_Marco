@@ -1,0 +1,8 @@
+Di seguito
+tutte le temperature di cui fare la media
+queste righe di testo sono skippate in automatico
+
+20.9
+21.0
+19.8
+13.4
