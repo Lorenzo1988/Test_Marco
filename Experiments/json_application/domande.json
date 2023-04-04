@@ -8,4 +8,14 @@
             "Acqua\n"
         ],
         "risposta_corretta": 2
+    },
+{
+        "contenuto_domanda": "In che anno Inizia la Rivoluzione Americana?",
+        "possibili_risposte": [
+            "1789\n",
+            "1702\n",
+            "1765\n",
+            "1810\n"
+        ],
+        "risposta_corretta": 3
     }]
