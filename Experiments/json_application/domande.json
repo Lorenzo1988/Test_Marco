@@ -1,0 +1,11 @@
+[{"contenuto_domanda":"Che animali sono i delfini",
+    "possibili_risposte": ["Pesci\n","Uccelli\n","Mammiferi\n","4.Altro\n"],
+    "risposta_corretta":3   },
+    {
+        "contenuto_domanda": "Più terra o acqua sulla superficie terrestre?",
+        "possibili_risposte": [
+            "Terra\n",
+            "Acqua\n"
+        ],
+        "risposta_corretta": 2
+    }]
