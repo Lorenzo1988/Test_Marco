@@ -1,4 +1,4 @@
-file_directory = "../lessons/files/temperatures"
+file_directory = "../files/temperatures"
 file_name = "temperatures.txt"
 file_temperature=file_directory+"/"+file_name
 def isfloat(num):

@@ -10,7 +10,7 @@ filenames = ["Divina_Commedia.txt"
 
 # usiamo la funzione zip che funziona in modo simile alla funzione contents
 # solo che la funzione zip non ritorna indice e valore ma cicla sue due liste
-path= "../lessons/files/incipit_libri"
+path= "../files/incipit_libri"
 for content,filename in zip(contents,filenames):
     file = open(f"{path}/Incipit_{filename}","w")
     file.write(content)

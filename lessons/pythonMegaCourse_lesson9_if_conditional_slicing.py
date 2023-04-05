@@ -1,5 +1,5 @@
 
-file_directory= "files"
+file_directory= "../files"
 file_name="todos.txt"
 todos=[]
 possible_actions=['ADD',"SHOW","EDIT","EXIT","COMPLETE"]

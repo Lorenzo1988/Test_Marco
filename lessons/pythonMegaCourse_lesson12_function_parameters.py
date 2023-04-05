@@ -1,5 +1,5 @@
 #VARIABLES
-file_directory= "files"
+file_directory= "../files"
 file_name="todos.txt"
 file_full=file_directory+'/'+file_name
 todos=[]

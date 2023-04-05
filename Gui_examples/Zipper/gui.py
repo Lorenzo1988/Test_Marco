@@ -16,9 +16,11 @@ button_destination_folder = sg.FolderBrowse("Scegli")
 
 ########
 #WINDOW#
-window_instance = sg.Window("File Compressor",layout=[[label_selection_files,box_selection_files,button_selection_file],
-                                                  [label_selection_destination_folder,box_destination_folder,button_destination_folder],
-                                                  [button_compress]])
+window_instance = sg.Window("File Compressor",
+                            layout=[[label_selection_files,box_selection_files,button_selection_file],
+                                     [label_selection_destination_folder,box_destination_folder,button_destination_folder],
+                                     [button_compress]],
+                            font=("Helvetica",20))
 
 # Se togliamo le [] interne otteniamo errore
 # #window_instance = sg.Window("Titolo App", layout=[label_instance, input_box_instance, add_button_instance])
