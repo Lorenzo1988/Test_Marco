@@ -1,4 +1,4 @@
-from User_interface.modules import functions
+import modules.functions as functions
 import time
 
 now= time.strftime("%Y-%b-%D %H:%M:%S\n")
