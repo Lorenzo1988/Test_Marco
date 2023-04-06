@@ -9,16 +9,24 @@ add_button_instance = PySimpleGUI.Button("Add")
 list_box_instance = PySimpleGUI.Listbox(functions.get_todos(),key="list_todos_key",enable_events=True,size=[45,20])
 edit_button_instance = PySimpleGUI.Button("Edit")
 
+layout = [[label_instance]# riga1
+          ,[input_box_instance,add_button_instance]   # riga2
+          ,[list_box_instance,edit_button_instance]   # riga3
+          ]
+#esempio se voglio creare dei bottoni dinamicamente
+#button_labels = ["Button_1","Button_2"]
+#layout = []
+
+#for bl in button_labels:
+#    layout.append([PySimpleGUI.Button(bl)])
+
+
 
 ########
 #WINDOW#
 window_instance = PySimpleGUI.Window("Titolo App"
-                            ,layout=
-                                [
-                                [label_instance]                            # riga1
-                                ,[input_box_instance,add_button_instance]   # riga2
-                                ,[list_box_instance,edit_button_instance]   # riga3
-                                ]
+                            ,layout=layout
+
                             ,font=("Helvetica",20))
 
 # Se togliamo le [] interne otteniamo errore
