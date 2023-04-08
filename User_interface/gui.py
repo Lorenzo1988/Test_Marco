@@ -8,10 +8,13 @@ input_box_instance = PySimpleGUI.InputText(tooltip="suggerimento: Inserisci il T
 add_button_instance = PySimpleGUI.Button("Add")
 list_box_instance = PySimpleGUI.Listbox(functions.get_todos(),key="list_todos_key",enable_events=True,size=[45,20])
 edit_button_instance = PySimpleGUI.Button("Edit")
-
+complete_button= PySimpleGUI.Button("Complete")
+exit_button=PySimpleGUI.Button("Exit")
+#LAYOUT
 layout = [[label_instance]# riga1
           ,[input_box_instance,add_button_instance]   # riga2
-          ,[list_box_instance,edit_button_instance]   # riga3
+          ,[list_box_instance,edit_button_instance,complete_button]   # riga3
+          ,[exit_button]       #riga4
           ]
 #esempio se voglio creare dei bottoni dinamicamente
 #button_labels = ["Button_1","Button_2"]
@@ -61,8 +64,20 @@ while True:
             todos[index] = new_todo+"\n"
             functions.write_todos(todos)
             window_instance["list_todos_key"].update(values=todos)
+        case "Complete":
+            todo_to_complete = event_tupla["list_todos_key"][0]
+            todos=functions.get_todos()
+            todos.remove(todo_to_complete)
+            functions.write_todos(todos)
+            window_instance["list_todos_key"].update(values=todos)
+            window_instance["todo_key"].update(values="")
+        case "Exit":
+            break
+
+
         case "list_todos_key":
             window_instance["todo_key"].update(value=event_tupla["list_todos_key"][0])
+
         case PySimpleGUI.WIN_CLOSED:
             break
 
