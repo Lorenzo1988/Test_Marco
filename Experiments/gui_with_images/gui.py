@@ -9,8 +9,13 @@ label_clock = PySimpleGUI.Text("",key="clock_key")
 label_instance = PySimpleGUI.Text("Metti qui i TO-DO")
 input_box_instance = PySimpleGUI.InputText(tooltip="suggerimento: Inserisci il ToDo",key="todo_key",do_not_clear=False)
                                                             # key è la chiave del dizionario
-add_button_instance = PySimpleGUI.Button("Add")
-list_box_instance = PySimpleGUI.Listbox(functions.get_todos(),key="list_todos_key",enable_events=True,size=[45,20])
+add_button_instance = PySimpleGUI.Button(key="Add",image_source="add.png",
+                                         mouseover_colors="LightBlue2",
+                                        tooltip="Add Todo")
+list_box_instance = PySimpleGUI.Listbox(functions.get_todos(
+                                        filepath="../../files/todos.txt"),
+                                        key="list_todos_key",
+                                        enable_events=True,size=[45,20])
 edit_button_instance = PySimpleGUI.Button("Edit")
 complete_button= PySimpleGUI.Button("Complete")
 exit_button=PySimpleGUI.Button("Exit")
@@ -57,27 +62,27 @@ while True:
     print(f"event_tupla: {event_tupla}")
     match event_button:
         case "Add":
-            todos= functions.get_todos()
+            todos= functions.get_todos(filepath="../../files/todos.txt")
             new_todo = event_tupla['todo_key'] + '\n'
             todos.append(new_todo)
-            functions.write_todos(todos)
+            functions.write_todos(todos_arg=todos, filepath="../../files/todos.txt")
             window_instance["list_todos_key"].update(values=todos)
         case "Edit":
             try:
                 todo_to_edit = event_tupla["list_todos_key"][0]
                 new_todo = event_tupla["todo_key"]
-                todos = functions.get_todos()
+                todos = functions.get_todos(filepath="../../files/todos.txt")
                 index= todos.index(todo_to_edit)
                 todos[index] = new_todo+"\n"
-                functions.write_todos(todos)
+                functions.write_todos(todos_arg=todos, filepath="../../files/todos.txt")
                 window_instance["list_todos_key"].update(values=todos)
             except IndexError:
                 PySimpleGUI.popup("Non hai selezionato l'elemento da editare",font=("Helevetica",20))
         case "Complete":
             todo_to_complete = event_tupla["list_todos_key"][0]
-            todos=functions.get_todos()
+            todos=functions.get_todos(filepath="../../files/todos.txt")
             todos.remove(todo_to_complete)
-            functions.write_todos(todos)
+            functions.write_todos(todos_arg=todos, filepath="../../files/todos.txt")
             window_instance["list_todos_key"].update(values=todos)
             #window_instance["todo_key"].update(values="")
         case "Exit":

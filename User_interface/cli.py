@@ -1,6 +1,5 @@
 import modules.functions as functions
 import time
-
 now= time.strftime("%Y-%b-%D %H:%M:%S\n")
 print(now)
 todos=[]
