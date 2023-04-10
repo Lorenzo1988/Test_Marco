@@ -21,5 +21,5 @@ def make_archive(filepaths,directory_output):
         print(f"directory_output deve essere folder/<nome_file> non solo folder")
 
 if __name__ == "__main__":
-    make_archive(filepaths=["/home/lorenzo/pythonProjects/pythonMegaCourse_project1/Gui_examples/Zipper/files_to_compress/Divina_Commedia.txt,/home/lorenzo/pythonProjects/pythonMegaCourse_project1/Gui_examples/Zipper/files_to_compress/Divina_Commedia2.txt"]\
+    make_archive(filepaths=["/home/lorenzo/pythonProjects/pythonMegaCourse_project1/Gui_examples/Zipper/directory_uncompressed/Divina_Commedia.txt,/home/lorenzo/pythonProjects/pythonMegaCourse_project1/Gui_examples/Zipper/directory_uncompressed/Divina_Commedia2.txt"]\
                  ,directory_output="directory_compressed")
