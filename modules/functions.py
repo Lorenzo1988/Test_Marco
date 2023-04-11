@@ -2,8 +2,8 @@
 import os
 # DEFINISCO DELLE VARIABILI USATE NELL FUNZIONI DI SOLITO IN MAIUSCOLO
 
-FILEPATH= "../files/todos.txt"
-
+FILEPATH= "files/todos.txt"
+#FILEPATH="/home/lorenzo/pythonProjects/pythonMegaCourse_project1/todos.txt"
 def verify_if_exist_file(filepath=FILEPATH):
     if not os.path.exists(filepath):
         with open(filepath, "w") as file:
