@@ -1,7 +1,20 @@
 import PySimpleGUI
+
+import modules.functions
 import modules.functions as functions
 import time
+import os
+dir_path = os.path.dirname(os.path.realpath(__file__))
+
+if __name__ == "__main__":
+    print(f"Il file __main__ del run è -->  {__file__}")
+    print(f"Il __name__ è {__name__}")
+
+# VERIFICA SE ESISTE IL FILE todos_bkp.txt altrimenti lo crea
+a= modules.functions.verify_if_exist_file()
+print(a)
 #WIDGET
+
 
 now= time.strftime("%Y-%b-%D %H:%M:%S\n")
 

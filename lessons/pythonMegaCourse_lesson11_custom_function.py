@@ -1,6 +1,6 @@
 #VARIABLES
 file_directory= "../files"
-file_name="todos.txt"
+file_name="todos_bkp.txt"
 todos=[]
 possible_actions=['ADD',"SHOW","EDIT","EXIT","COMPLETE"]
 

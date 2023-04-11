@@ -4,7 +4,7 @@ possible_actions=['ADD',"SHOW","EDIT","EXIT","COMPLETE"]
 
 #CUSTOM FUNCTION
 #utilizzo parametro di default
-def get_todos(filepath="files/todos.txt"):
+def get_todos(filepath="files/todos_bkp.txt"):
     """
         Apro il file dentro <filepath>
         in modalità read e ritorno il contenuto
@@ -16,7 +16,7 @@ def get_todos(filepath="files/todos.txt"):
     return todos_local
 
 #N.B. se ci sono dei parametri senza default definito vanno messi all'inizio
-def write_todos(todos_arg,filepath="files/todos.txt"):
+def write_todos(todos_arg,filepath="files/todos_bkp.txt"):
     """
         Apro il file dentro <filepath>
         in modalità write e ci scrivo dentro

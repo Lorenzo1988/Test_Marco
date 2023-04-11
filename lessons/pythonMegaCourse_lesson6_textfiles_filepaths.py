@@ -1,7 +1,7 @@
 
 #while True
 file_directory= "../files"
-file_name="todos.txt"
+file_name="todos_bkp.txt"
 todos=[]
 i=0
 # strip method serve per eliminare gli spazi alla fine

@@ -1,6 +1,6 @@
 
 file_directory= "../files"
-file_name="todos.txt"
+file_name="todos_bkp.txt"
 todos=[]
 
 user_prompt="Type ADD - SHOW - EDIT - EXIT - COMPLETE: "
