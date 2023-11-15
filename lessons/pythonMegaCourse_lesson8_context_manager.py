@@ -1,5 +1,6 @@
 
 file_directory= "../files"
+print(file_directory)
 file_name="todos_bkp.txt"
 todos=[]
 
@@ -14,9 +15,8 @@ while True:
 # creo il context manager
             with (open(file_directory+"/"+file_name, "r")) as file:
                 todos = file.readlines()
-
-
             todos.append(todo)
+
 #  creo il context manager
             with open(file_directory+"/"+file_name, "w") as file:
                file.writelines(todos)
@@ -25,7 +25,6 @@ while True:
 #  creo il context manager
             with (open(file_directory+"/"+file_name, "r")) as file:
                 todos = file.readlines()
-            print(todos)
 
             new_todos = [item.strip('\n') for item in todos]
 

@@ -3,8 +3,9 @@ file_directory= "../files"
 file_name="todos_bkp.txt"
 todos=[]
 possible_actions=['ADD',"SHOW","EDIT","EXIT","COMPLETE"]
+azioni = ' - '.join(possible_actions)
+user_prompt=f"Type {azioni}: "
 
-user_prompt="Type ADD - SHOW - EDIT - EXIT - COMPLETE: "
 while True:
     richiesta = input(user_prompt)
 
@@ -65,6 +66,7 @@ while True:
 
         # creo il context manager per leggere il file
 
+    #CASO  COMPLETE
     elif richiesta.upper().startswith(str(possible_actions[4])):
         number=int(input("Inserisci numero elenco da cancellare perchè completo: "))
 

@@ -25,25 +25,21 @@ while True:
             todos = file.readlines()
             file.close()
             print(todos)
-
-
-# opzione 1 per rimuovere le righe vuote: ciclo e elimino con strip \#n
+#   opzione 1 per rimuovere le righe vuote: ciclo e elimino con strip \#n
 #           new_todos = []
 #           for item in todos:
 #               new_item = item.strip('\n')
 #               new_todos.append(new_item)
-#
-#           for index,item in enumerate(new_todos):
-#               row= f"{index+1}-{item.title()}"
-#               print(row)
-#           print("Il numero di attività è:",len(todos))
 
-#opzione 2 list comprehension: non devo dichiarare una lista vuota. il ciclo è implicito nelle parentesi quadre
+    #opzione 2 list comprehension: non devo dichiarare una lista vuota. il ciclo è implicito nelle parentesi quadre
             new_todos = [item.strip('\n') for item in todos]
+#
+            for index,item in enumerate(new_todos):
+                row= f"{index+1}-{item.title()}"
+                print(row)
+            print("Il numero di attività è:",len(todos))
 
-            for item in todos:
-                new_item = item.strip('\n')
-                new_todos.append(new_item)
+
 
 
         case 'ED':

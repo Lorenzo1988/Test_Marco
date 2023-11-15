@@ -18,7 +18,8 @@ def add_todo():
 
 st.title("My Todo APP")
 st.subheader("Lista di attività")
-st.text("ProvaProva")
+st.text("\n Inserire qui sotto le attività da aggiungere."
+        "\n Facendo Check su un'attività la si considera completata e quindi si elimina")
 
 #st.checkbox("Attività 1")
 

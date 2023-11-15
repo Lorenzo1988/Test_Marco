@@ -38,9 +38,12 @@ while True:
         todos = functions.get_todos()
         new_todos = [item.strip('\n') for item in todos]
         for index, item in enumerate(new_todos):
-             item=item.strip('\n').title()
-             row=f"{index+1}-{item}"
-             print(row)
+            print(index,item)
+
+        #for index, item in enumerate(new_todos):
+        #    item=item.strip('\n').title()
+        #    row=f"{index+1}-{item}"
+        #    print(row)
         print("\tIl numero di attività è:",len(todos))
 
     #CASO  EDIT
