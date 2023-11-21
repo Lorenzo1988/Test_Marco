@@ -8,5 +8,5 @@ print(myfiles)
 
 for filepath in myfiles:
     with open(filepath, "r") as file:
-        #print(f"Sto aprendo il file {filepath} in modalità scrittura")
+        print(f"\nSto aprendo il file {filepath} in modalità scrittura")
         print(file.read())

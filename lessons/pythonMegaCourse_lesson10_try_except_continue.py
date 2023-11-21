@@ -12,14 +12,14 @@ while True:
     if  richiesta.upper().startswith(str(possible_actions[0])):
         if len(richiesta) <4:
         #azione se len<4
-            todo = input("Aggiungi attività: ") + "\n"
+            todo = input("Aggiungi attività: ")
         else:
-            todo = richiesta[4:] + "\n"
+            todo = richiesta[4:]
 
         with (open(file_directory+"/"+file_name, "r")) as file:
             todos = file.readlines()
 
-        todos.append(todo)
+        todos.append(todo + "\n")
         with open(file_directory+"/"+file_name, "w") as file:
            file.writelines(todos)
 
@@ -51,11 +51,11 @@ while True:
 
         elif len(richiesta.split(" ")) == 2:
             try:
-                number = int(richiesta.split(" ")[1])
-                number_1 = int(number)
-                new_todo = input("Inserisci il nuovo item {}: ".format(number))
+                number_1 = int(richiesta.split(" ")[1]) -1
+                new_todo = input("Inserisci il nuovo item {}: ".format(number_1))
             except ValueError:
                 print("Errore Valorizzazione numero da modificare")
+                continue
 
         # caso di inserimento di edit numero e valore
         else:
@@ -63,34 +63,44 @@ while True:
             try:
                 number_split= richiesta.split(" ")
                 number_1 = int(number_split[1]) -1
-                new_todo = ("".join(str(i) for i in number_split[2:]))
+                new_todo = (" ".join(str(i) for i in number_split[2:]))
+                print(f"new_todo: {new_todo}")
             except ValueError:
                 print("Errore Valorizzazione numero da modificare")
                 #il comando continue è l'opposto di break. Praticamente dice riparti
                 continue
 
         with open(file_directory + "/" + file_name, 'r') as file:
-            todos = file.readlines()
-            todos[number_1] = str(new_todo) + "\n"
+            try:
+                todos = file.readlines()
+                todos[number_1] = str(new_todo) + "\n"
+            except NameError:
+                print("Npn è chiaro cosa vuoi editare!")
         with open(file_directory + "/" + file_name, "w") as file:
             file.writelines(todos)
 
     # CASO COMPLETE
     elif richiesta.upper().startswith(str(possible_actions[4])):
-        number=int(input("Inserisci numero elenco da cancellare perchè completo: "))
+        if len(richiesta.split(" ")) == 1:
+            number = int(input("Inserisci numero elenco da cancellare perchè completo: "))
+        elif len(richiesta.split(" ")) == 2:
+            try:
+                number = int(richiesta.split(" ")[1])
+                number_to_remove = number - 1
+                todo_to_remove = todos[number_to_remove].strip('\n')
+                todos.pop(number_to_remove)
+                with open(file_directory + "/" + file_name, "w") as file:
+                    file.writelines(todos)
+                    message = f"Rimosso l'item {todo_to_remove}"
+                    print(message)
 
-        try:
-            number_to_remove = number -1
-            todo_to_remove = todos[number_to_remove].strip('\n')
-            todos.pop(number_to_remove)
-            with open(file_directory+"/"+file_name,"w") as file:
-                file.writelines(todos)
+            except ValueError:
+                print("Cortesemente metti un numero")
 
-            message = f"Rimosso l'item {todo_to_remove}"
-            print(message)
-        except IndexError:
-            print("Numero di item non presente")
+            except IndexError:
+                print("Numero di item non presente")
             continue
+    # CASO EXIT
     elif richiesta.upper().startswith(str(possible_actions[3])):
         break
 

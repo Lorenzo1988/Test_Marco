@@ -9,5 +9,5 @@ name = input("Inserisci un nome della famiglia: ").upper()
 
 #inserisco l'iterazione da 1 e non da 0 perchè la prima riga è l'intestazione
 for riga in data[1:]:
-    if riga[0].upper() == name:
-     print(riga)
+    if riga[0].upper() == name.upper():
+        print(riga)

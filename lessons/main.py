@@ -1,3 +1,6 @@
+# IMPORTIAMO DEI MODULI STANDARD
+
+
 #METODO 1 FROM: uso l'import (funziona se si trovano nella stessa directory)
 # si usa quando si vogliono importare solo poche funzioni dal modulo
 #from functions import get_todos, write_todos
@@ -6,11 +9,7 @@
 #METODO 2: USO IMPORT DI MODULI devo usare la dot notation <nome_file>.<funzione
 from modules import functions
 
-# IMPORTIAMO DEI MODULI STANDARD
-import time
 
-now= time.strftime("%Y-%b-%D %H:%M:%S\n")
-print(now)
 todos=[]
 possible_actions=['ADD',"SHOW","EDIT","EXIT","COMPLETE"]
 

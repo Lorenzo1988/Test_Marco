@@ -4,7 +4,7 @@ possible_actions=['ADD',"SHOW","EDIT","EXIT","COMPLETE"]
 
 #CUSTOM FUNCTION
 #utilizzo parametro di default
-def get_todos(filepath="files/todos_bkp.txt"):
+def get_todos(filepath="../files/todos_bkp.txt"):
     """
         Apro il file dentro <filepath>
         in modalità read e ritorno il contenuto
@@ -16,7 +16,7 @@ def get_todos(filepath="files/todos_bkp.txt"):
     return todos_local
 
 #N.B. se ci sono dei parametri senza default definito vanno messi all'inizio
-def write_todos(todos_arg,filepath="files/todos_bkp.txt"):
+def write_todos(todos_arg,filepath="../files/todos_bkp.txt"):
     """
         Apro il file dentro <filepath>
         in modalità write e ci scrivo dentro
@@ -90,24 +90,26 @@ while True:
 
     # CASO COMPLETE
     elif richiesta.upper().startswith(str(possible_actions[4])):
-        if len(richiesta.split(" ")) <2:
-            number=int(input("Inserisci numero elenco da cancellare perchè completo: "))
-        else:
-            number = int(richiesta.split(" ")[1])
+        if len(richiesta.split(" ")) == 1:
+            number = int(input("Inserisci numero elenco da cancellare perchè completo: "))
+        elif len(richiesta.split(" ")) == 2:
+            try:
+                number = int(richiesta.split(" ")[1])
+            except ValueError:
+                print("Cortesemente metti un numero")
 
+                continue
         try:
-            number_to_remove = number -1
-            print(f"number_to_remove: {number_to_remove}")
+            number_to_remove = number - 1
             todo_to_remove = todos[number_to_remove].strip('\n')
-            print(f"todo_to_remove: {number_to_remove}")
             todos.pop(number_to_remove)
             write_todos(todos)
-
             message = f"Rimosso l'item {todo_to_remove}"
             print(message)
         except IndexError:
             print("Numero di item non presente")
-            continue
+        continue
+    # CASO EXIT
     elif richiesta.upper().startswith(str(possible_actions[3])):
         break
 
@@ -115,3 +117,6 @@ while True:
         print("Hai inserito una stringa non riconoscibile!")
 
 print("ciao ciao!")
+
+
+print(f"help(get_todos(): {help(get_todos())}")

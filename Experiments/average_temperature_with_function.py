@@ -13,6 +13,7 @@ def get_average(file):
         print(f"Sto aprendo il file {file} in modalità lettura")
         data_local = file_local.readlines()
         print(f"type_data_local: {type(data_local)}")
+        print(f"data_local: {data_local}")
         lista_numeri = [float(item.strip('\n')) for item in data_local if isfloat(item.strip('\n'))]
         average_local = sum(lista_numeri) / len(lista_numeri)
         print(f"La media calcolata è: {average_local}")

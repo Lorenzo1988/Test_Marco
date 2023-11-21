@@ -1,10 +1,21 @@
-# ordino le functions in questo file
-import os
-# DEFINISCO DELLE VARIABILI USATE NELL FUNZIONI DI SOLITO IN MAIUSCOLO
-
 FILEPATH= "files/todos.txt"
 #FILEPATH="/home/lorenzo/pythonProjects/pythonMegaCourse_project1/todos.txt"
+
+import os
+import time
+
+
+
+now= time.strftime("%d-%b-%Y %H:%M:%S")
+
+
 def verify_if_exist_file(filepath=FILEPATH):
+    """
+    verifica se esiste il file <filepath>
+    se esiste lo apre, se non esiste lo crea
+    :param filepath:
+    :return:  restituisce una stringa
+    """
     if not os.path.exists(filepath):
         with open(filepath, "w") as file:
             return (f"Il file {filepath} non esiste. Lo creo")
@@ -13,7 +24,12 @@ def verify_if_exist_file(filepath=FILEPATH):
         return(f"Il file {filepath} esiste già. NON lo creo")
 
         pass
-
+def funzione_solo_doc():
+    """
+    questa funzione contiene solo doc-string
+    :return: return stringa "documentazione mostrata!"
+    """
+    return "documentazione mostrata"
 #CUSTOM FUNCTION
 #utilizzo parametro di default
 def get_todos(filepath=FILEPATH):
@@ -46,3 +62,5 @@ def write_todos(todos_arg,filepath=FILEPATH):
 if __name__ == "__main__":
     print(f"Il file __main__ del run è {__file__}")
     print(f"Il __name__ è {__name__}")
+else:
+    print(f"{now} : Importato file: {__name__}")
