@@ -1,4 +1,4 @@
-import PySimpleGUI
+import PySimpleGUI as sg
 
 import modules.functions
 import modules.functions as functions
@@ -18,18 +18,18 @@ print(verifica_todo)
 
 now= time.strftime("%Y-%b-%D %H:%M:%S\n")
 
-label_clock = PySimpleGUI.Text("",key="clock_key")
-label_instance = PySimpleGUI.Text("Metti qui i TO-DO")
-input_box_instance = PySimpleGUI.InputText(tooltip="suggerimento: Inserisci il ToDo",key="todo_key",do_not_clear=False)
+label_clock = sg.Text("",key="clock_key")
+label_instance = sg.Text("Metti qui i TO-DO")
+input_box_instance = sg.InputText(tooltip="suggerimento: Inserisci il ToDo",key="todo_key",do_not_clear=False)
                                                             # key è la chiave del dizionario
-add_button_instance = PySimpleGUI.Button("Add")
-list_box_instance = PySimpleGUI.Listbox(functions.get_todos(),key="list_todos_key",enable_events=True,size=[45,20])
-edit_button_instance = PySimpleGUI.Button("Edit")
-complete_button= PySimpleGUI.Button("Complete")
-exit_button=PySimpleGUI.Button("Exit")
+add_button_instance = sg.Button("Add")
+list_box_instance = sg.Listbox(functions.get_todos(),key="list_todos_key",enable_events=True,size=[45,20])
+edit_button_instance = sg.Button("Edit")
+complete_button= sg.Button("Complete")
+exit_button=sg.Button("Exit")
 # LAYOUT
 layout = [[label_clock] # riga0 clock
-          ,[label_instance]# riga1
+          ,[label_instance] # riga1
           ,[input_box_instance,add_button_instance]   # riga2
           ,[list_box_instance,edit_button_instance,complete_button]   # riga3
           ,[exit_button]       #riga4
@@ -45,7 +45,7 @@ layout = [[label_clock] # riga0 clock
 
 ########
 #WINDOW#
-window_instance = PySimpleGUI.Window("Titolo App"
+window_instance = sg.Window("Titolo App"
                             ,layout=layout
 
                             ,font=("Helvetica",20))
@@ -85,7 +85,7 @@ while True:
                 functions.write_todos(todos)
                 window_instance["list_todos_key"].update(values=todos)
             except IndexError:
-                PySimpleGUI.popup("Non hai selezionato l'elemento da editare",font=("Helevetica",20))
+                sg.popup("Non hai selezionato l'elemento da editare",font=("Helevetica",20))
         case "Complete":
             todo_to_complete = event_tupla["list_todos_key"][0]
             todos=functions.get_todos()
@@ -100,7 +100,7 @@ while True:
         case "list_todos_key":
             window_instance["todo_key"].update(value=event_tupla["list_todos_key"][0])
 
-        case PySimpleGUI.WIN_CLOSED:
+        case sg.WIN_CLOSED:
             break
 
 #FINE ESECUZIONE
