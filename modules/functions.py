@@ -5,10 +5,6 @@ import os
 import time
 
 
-
-now= time.strftime("%d-%b-%Y %H:%M:%S")
-
-
 def verify_if_exist_file(filepath=FILEPATH):
     """
     verifica se esiste il file <filepath>
@@ -18,10 +14,12 @@ def verify_if_exist_file(filepath=FILEPATH):
     """
     if not os.path.exists(filepath):
         with open(filepath, "w") as file:
-            return (f"Il file {filepath} non esiste. Lo creo")
+            now = time.strftime("%d-%b-%Y %H:%M:%S")
+            return (f"{now}: Il file {filepath} non esiste. Lo creo")
 
     else:
-        return(f"Il file {filepath} esiste già. NON lo creo")
+        now = time.strftime("%d-%b-%Y %H:%M:%S")
+        return(f"{now}: Il file {filepath} esiste già. NON lo creo")
 
         pass
 def funzione_solo_doc():
@@ -39,7 +37,8 @@ def get_todos(filepath=FILEPATH):
         del file
     """
     with (open(filepath, "r")) as file_local:
-        print(f"Sto aprendo il file {filepath} in modalità lettura")
+        now = time.strftime("%d-%b-%Y %H:%M:%S")
+        print(f"{now}: Sto aprendo il file {filepath} in modalità lettura")
         todos_local = file_local.readlines()
     return todos_local
 
@@ -60,7 +59,9 @@ def write_todos(todos_arg,filepath=FILEPATH):
 # e NON TRAMITE import
 
 if __name__ == "__main__":
-    print(f"Il file __main__ del run è {__file__}")
-    print(f"Il __name__ è {__name__}")
+    now = time.strftime("%d-%b-%Y %H:%M:%S")
+    print(f"{now}: Il file __main__ del run è {__file__}")
+    print(f"{now}: Il __name__ è {__name__}")
 else:
-    print(f"{now} : Importato file: {__name__}")
+    now = time.strftime("%d-%b-%Y %H:%M:%S")
+    print(f"{now}: Importato file: {__name__}")
