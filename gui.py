@@ -20,10 +20,10 @@ now= time.strftime("%Y-%b-%D %H:%M:%S\n")
 
 label_clock = sg.Text("",key="clock_key")
 label_instance = sg.Text("Metti qui i TO-DO")
-input_box_instance = sg.InputText(tooltip="suggerimento: Inserisci il ToDo",key="todo_key",do_not_clear=False)
+input_box_instance = sg.InputText(tooltip="suggerimento: Inserisci il ToDo",key="box_inserisci_attivita",do_not_clear=False)
                                                             # key è la chiave del dizionario
 add_button_instance = sg.Button("Add")
-list_box_instance = sg.Listbox(functions.get_todos(),key="list_todos_key",enable_events=True,size=[45,20])
+list_box_instance = sg.Listbox(functions.get_todos(),key="box_elenco_attivita",enable_events=True,size=[45,20])
 edit_button_instance = sg.Button("Edit")
 complete_button= sg.Button("Complete")
 exit_button=sg.Button("Exit")
@@ -62,47 +62,59 @@ window_instance = sg.Window("Titolo App"
                                         # se metto label e input_box in due []] interne diverse ottengo su due righe
 
 #INIZIO ESECUZIONE FINESTRA
-print("Inizio esecuzione finestra")
+print("-------\nInizio esecuzione finestra\n-------")
+azione = 0
 while True:
+    azione += 1
     event_button,event_tupla=  window_instance.read(timeout_key=1000)
     window_instance["clock_key"].update(value=time.strftime("%Y-%b-%D %H:%M:%S"))
-    print(f"event_button: {event_button}")
-    print(f"event_tupla: {event_tupla}")
     match event_button:
         case "Add":
+            print(f"\nAZIONE {azione}. ADD. Event_button: {event_button}")
+            print(f"AZIONE {azione}.ADD. Event_tupla: {event_tupla}")
+
             todos= functions.get_todos()
-            new_todo = event_tupla['todo_key'] + '\n'
+            new_todo = event_tupla['box_inserisci_attivita'] + '\n'
             todos.append(new_todo)
             functions.write_todos(todos)
-            window_instance["list_todos_key"].update(values=todos)
+            window_instance["box_elenco_attivita"].update(values=todos)
         case "Edit":
+            print(f"\nAZIONE {azione}. EDIT. Event_button: {event_button}")
+            print(f"AZIONE {azione}.EDIT. Event_tupla: {event_tupla}")
+
             try:
-                todo_to_edit = event_tupla["list_todos_key"][0]
-                new_todo = event_tupla["todo_key"]
+                todo_to_edit = event_tupla["box_elenco_attivita"][0]
+                new_todo = event_tupla["box_inserisci_attivita"]
                 todos = functions.get_todos()
                 index= todos.index(todo_to_edit)
                 todos[index] = new_todo+"\n"
                 functions.write_todos(todos)
-                window_instance["list_todos_key"].update(values=todos)
+                window_instance["box_elenco_attivita"].update(values=todos)
             except IndexError:
                 sg.popup("Non hai selezionato l'elemento da editare",font=("Helevetica",20))
         case "Complete":
-            todo_to_complete = event_tupla["list_todos_key"][0]
+            print(f"\nAZIONE {azione}. COMPLETE. Event_button: {event_button}")
+            print(f"AZIONE {azione}.COMPLETE. Event_tupla: {event_tupla}")
+
+            todo_to_complete = event_tupla["box_elenco_attivita"][0]
             todos=functions.get_todos()
             todos.remove(todo_to_complete)
             functions.write_todos(todos)
-            window_instance["list_todos_key"].update(values=todos)
+            window_instance["box_elenco_attivita"].update(values=todos)
             #window_instance["todo_key"].update(values="")
         case "Exit":
             break
 
 
-        case "list_todos_key":
-            window_instance["todo_key"].update(value=event_tupla["list_todos_key"][0])
+        case "box_elenco_attivita":
+            print(f"\nAZIONE {azione}. SELEZIONA DA ELENCO. Event_button: {event_button}")
+            print(f"AZIONE {azione}.SELEZIONA DA ELENCO. Event_tupla: {event_tupla}")
+
+            window_instance["box_inserisci_attivita"].update(value=event_tupla["box_elenco_attivita"][0])
 
         case sg.WIN_CLOSED:
             break
 
 #FINE ESECUZIONE
-print("Fine esecuzione finestra")
+print("-------\nFine esecuzione finestra\n-------")
 window_instance.close()
