@@ -37,8 +37,7 @@ while True:
     event_button, event_tupla = window_instance.read()
     filepaths = event_tupla["box_selection_files_key"].split(";")
     folder = event_tupla["button_destination_folder_key"]
-    print(f"filepaths: {filepaths}")
-    print(f"event_tupla: {event_tupla['button_selection_files_key']}")
+    print(f"event_button:\n{event_button}\nevent_tupla:\n{event_tupla}")
     zip_creator.make_archive(filepaths,folder)
     window_instance["Output"].update(value= "Compressione completata!")
     break

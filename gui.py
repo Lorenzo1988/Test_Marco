@@ -1,11 +1,11 @@
 import PySimpleGUI as sg
 import modules.functions as functions
-from modules.functions import now
 import time
 import os
 dir_path = os.path.dirname(os.path.realpath(__file__))
 
 if __name__ == "__main__":
+    now = time.strftime("%d-%b-%Y %H:%M:%S")
     print(f"{now}: Il file __main__ del run è -->  {__file__}")
     print(f"{now}: Il __name__ è {__name__}")
 
@@ -14,6 +14,7 @@ verifica_todo= functions.verify_if_exist_file()
 print(verifica_todo)
 #WIDGET
 
+#TESTO_BOTTONI
 
 
 #RIGA 0
@@ -32,7 +33,7 @@ edit_button_instance = sg.Button("Edit")
 complete_button= sg.Button("Complete")
 
 #RIGA 4
-exit_button=sg.Button("Exit")
+exit_button=sg.Button("Exit",)
 
 #LAYOUT
 layout = [[label_clock]                                                 # riga0 clock
@@ -74,25 +75,25 @@ azione = 0
 while True:
     azione += 1
     now = time.strftime("%d-%b-%Y %H:%M:%S")
-    event_button,event_tupla=  window_instance.read(timeout_key=1000)
+    azione_eseguita,risultati_azione=  window_instance.read(timeout_key=1)
     window_instance["clock_key"].update(value=now)
-    match event_button:
+    match azione_eseguita:
         case "Add":
-            print(f"\n{now}: AZIONE {azione}. ADD. Event_button: {event_button}")
-            print(f"{now}: AZIONE {azione}.ADD. Event_tupla: {event_tupla}")
+            print(f"\n{now}: AZIONE {azione}. ADD. Azione_eseguita: {azione_eseguita}")
+            print(f"{now}: AZIONE {azione}.ADD. Risultati_azione: {risultati_azione}")
 
             todos= functions.get_todos()
-            new_todo = event_tupla['box_inserisci_attivita'] + '\n'
+            new_todo = risultati_azione['box_inserisci_attivita'] + '\n'
             todos.append(new_todo)
             functions.write_todos(todos)
             window_instance["box_elenco_attivita"].update(values=todos)
         case "Edit":
-            print(f"\n{now}: AZIONE {azione}. EDIT. Event_button: {event_button}")
-            print(f"{now}: AZIONE {azione}.EDIT. Event_tupla: {event_tupla}")
+            print(f"\n{now}: AZIONEp {azione}. EDIT. Azione_eseguita: {azione_eseguita}")
+            print(f"{now}: AZIONEq {azione}. EDIT. Risultati_azione: {risultati_azione}")
 
             try:
-                todo_to_edit = event_tupla["box_elenco_attivita"][0]
-                new_todo = event_tupla["box_inserisci_attivita"]
+                todo_to_edit = risultati_azione["box_elenco_attivita"][0]
+                new_todo = risultati_azione["box_inserisci_attivita"]
                 todos = functions.get_todos()
                 index= todos.index(todo_to_edit)
                 todos[index] = new_todo+"\n"
@@ -101,10 +102,10 @@ while True:
             except IndexError:
                 sg.popup("Non hai selezionato l'elemento da editare",font=("Helevetica",20))
         case "Complete":
-            print(f"\n{now}: AZIONE {azione}. COMPLETE. Event_button: {event_button}")
-            print(f"{now}: AZIONE {azione}.COMPLETE. Event_tupla: {event_tupla}")
+            print(f"\n{now}: AZIONE {azione}. COMPLETE. Azione_eseguita: {azione_eseguita}")
+            print(f"{now}: AZIONE {azione}.COMPLETE. Risultati_azione: {risultati_azione}")
 
-            todo_to_complete = event_tupla["box_elenco_attivita"][0]
+            todo_to_complete = risultati_azione["box_elenco_attivita"][0]
             todos=functions.get_todos()
             todos.remove(todo_to_complete)
             functions.write_todos(todos)
@@ -115,10 +116,10 @@ while True:
 
 
         case "box_elenco_attivita":
-            print(f"\n{now}: AZIONE {azione}. SELEZIONA DA ELENCO. Event_button: {event_button}")
-            print(f"{now}: AZIONE {azione}.SELEZIONA DA ELENCO. Event_tupla: {event_tupla}")
+            print(f"\n{now}: AZIONE {azione}. SELEZIONA DA ELENCO. Azione_eseguita: {azione_eseguita}")
+            print(f"{now}: AZIONE {azione}. SELEZIONA DA ELENCO. Risultati_azione: {risultati_azione}")
 
-            window_instance["box_inserisci_attivita"].update(value=event_tupla["box_elenco_attivita"][0])
+            window_instance["box_inserisci_attivita"].update(value=risultati_azione["box_elenco_attivita"][0])
 
         case sg.WIN_CLOSED:
             break
